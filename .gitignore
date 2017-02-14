@@ -36,3 +36,8 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user
 
+# Latex temporaries
+*.aux
+*.log
+*.synctex.gz
+*.toc

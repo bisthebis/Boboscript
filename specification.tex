@@ -21,10 +21,60 @@
 	Multi-thread support is not required, but could probably used through C native calls. Operation atomicity is not guaranteed in any case.
 	\paragraph{Modularity}
 	Every Boboscript file describes exactly one module, whose name must be declared in the beginning, with uppercase letters. It can be compiled to a binary format, with extension ".bobj". A full program consists of linked objects file, including one defining a module MAIN, which must contain the main() function.\footnote{In future versions, it could become possible to compile to a C library, with auto-generated headers.}\newline
-	A module may have local functions declared with the \textit{static} qualifier.
+	All functions defined in a module are exclusive to this module, unless it is stated (in module declaration) that they must be exported.
 	
 	\newpage
 	\section{Structure of a program}
+	\subsection{File layout}
+	\paragraph{Module declaration}
+	Every Boboscript file must start with a Module declaration. It contains the name of the module, and between brackets, the signature of all functions that must be exported and the name of classes, structs and enums to export. It is a statement, which implies it \textbf{must} end with a semicolon.
+	\begin{verbatim}
+		Module MODULE_NAME {
+		    Void arglessFunction(),
+		    Int intToIntFunction(Int, Int),
+		    NameOfAClassToExport,
+		    MyEnum,
+		    VectorStructure
+		    ...
+		  };
+	\end{verbatim}
+	\paragraph{Functions, types, constants and global variables declaration}
+	Once the module is declared, the remaining code consists of definitions. Types, functions, constants and globals variables. All definitions are statements and must end with a semicolon.
+	A typical file looks like this sample. \footnote{Class behavior will be defined \textit{in extenso} later on.}
+	\begin{verbatim}
+		struct Vector2D {
+		    Double x, y;
+		    };
+		    
+		Double pi = 3.14;
+		
+		enum Op {PLUS, MINUS, TIMES, DIV};
+		
+		class LinkedIntegerList {
+		    LinkedIntegerList(Int h, LinkedIntegerList tail = null) {
+		      _head = h;
+		      _tail = tail;
+		      };
+		    Int _head;
+		    LinkedIntegerList _tail;
+		};
+		
+	\end{verbatim}
+	
+	\subsection{Function definitions}
+	\paragraph{Declaration}
+	A function definition starts with the \textit{function} keyword, followed by the function name (starting with a lowercase letter or an underscore). Then comes the (potentially empty) arg list, between parentheses, in the form "Type name" and separated by commas. It is followed by an arrow (->) and the return type. Optionnally, a name can be added for documentation purposes, telling what the returned value represents.
+	
+	\paragraph{Definition}
+	Definition comes right after declaration, is enclosed by brackets \{ \} and ends with a semicolon. It contains statements and ends when it reaches a \textit{return} statement, or the end of the block. Reaching end of a function without returning results in undefined behavior if the returned value is used.
+	
+	\paragraph{Example} 
+	\begin{verbatim}
+		function abs(Double x) -> Double result {
+		    return x > 0 ? x : -x;
+		    };	
+	\end{verbatim}
+	
 	
 	
 	

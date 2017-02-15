@@ -75,8 +75,37 @@
 		    };	
 	\end{verbatim}
 	
+	\paragraph{Inner functions}
+	A function can be defined inside a function, or, actually, inside any block of code. Its scope will vary accordingly.
 	
 	
+	\subsection{Expressions and statements}
+	\paragraph{Expression} represent that can be evaluated as a value or an object reference. All variables are expressions, as well as function calls (including operators). Expressions are always used inside statements, or can be made into statement by appending a semicolon to them.
+	
+	\paragraph{Statements} are instructions. All type, variable and function definition are statements. Other statements include control flow, \textit{return} etc. All statements end with a semicolon.
+	
+	\newpage
+	\section{Type System}
+	\subsection{Primitive types and compound types}
+	Primitive types are equivalent to their C counterparts. They are Int, Float, Double, Char, Bool.\footnote{Remember that all typenames must start with an uppercase letter.} There is also the  VOID\_PTR special type, equivalent to \textit{void*} in C. It is designed to allow interfacing with C libraries (especially to implement the Bobo standard library).
+	
+	\paragraph{Structures}(\textit{struct}) represent POD\footnote{Plain old data} aggregates. Like their C counterpart, they can contain structured data, but not Object references neither instance of themselves. Namely, structures can contain other structures\footnote{Without recursion : if A has elements of type B, B can't contain As.}, primitive types, fixed-size arrays and enums.
+	
+	\paragraph{Enums}(\textit{enum}) work like in C : they are a bunch of constants converted to integers. But, unlike in C, they don't pollute global namespace : enum values must be accessed from scope resolution operator.
+	
+	\paragraph{Fixed-size arrays} are similar to the ones in C, but the array qualifier is in the type declaration. An array is tipically defined like this : 
+	\begin{verbatim}
+		Int[3] primes = {2,3,5};
+	\end{verbatim}
+	Arrays can only be constructed from other arrays at initialization. Later on, it can only modified item by item. Construcitng an array from one of another size is \textbf{undefined behaviour}.
+	An array does \textit{not} know its own size.
+	
+	\subsection{Classes}
+	Classes are similar to \textit{structs}, but they can contain reference to objects\footnote{"Object" refers to any instance of any class.}, including objects of its own class.
+	\paragraph{Methods}
+	A class can contain its own functions, called \textit{methods}. They always have an implicit reference to the caller object, named \textbf{self}.
+	\paragraph{Access specifiers}
+	All members of a class (attributes and methods) can be \textit{public}, \textit{protected} or \textit{private}. Public members can be accessed from anywhere, while private or protected only from inside. Protected members can also be used in derived classes (see later).
 	
 
 \end{document}

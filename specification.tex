@@ -7,9 +7,25 @@
 	\maketitle
 
 	\tableofcontents
+	\newpage
 
 	\section{Introduction}
 	The main goal of this document is to provide a formal, exact description of the programming language I'm working on, known as \textit{Boboscript}. It will give indications about how to scan, parse, run or compile it, in a way that'll make the implementation almost obvious.
+	
+	\subsection{Purpose and main characteristics}
+	\paragraph{Paradigm and data model}
+	Boboscript is meant to be a procedural, \textit{C-like} language, which heavily encourage decoupling of \textit{code} and \textit{data}. Code is mainly represented through functions and data via POD structures. It supports primitive object-oriented programming, with garbage-collected objects that are the only way to have recursive data structures. No manual memory is allowed, excepted in low-level code (native C calls) : data is either stack-allocated or garbage-collected object.
+	\paragraph{Type system}
+	Boboscript is \textit{statically} and \textit{strongly typed} language, and favors \textit{immutable by default} data. It is designed for compilation to C, and thus, use the C memory model.
+	\paragraph{Limitations}
+	Multi-thread support is not required, but could probably used through C native calls. Operation atomicity is not guaranteed in any case.
+	\paragraph{Modularity}
+	Every Boboscript file describes exactly one module, whose name must be declared in the beginning, with uppercase letters. It can be compiled to a binary format, with extension ".bobj". A full program consists of linked objects file, including one defining a module MAIN, which must contain the main() function.\footnote{In future versions, it could become possible to compile to a C library, with auto-generated headers.}\newline
+	A module may have local functions declared with the \textit{static} qualifier.
+	
+	\newpage
+	\section{Structure of a program}
+	
 	
 	
 

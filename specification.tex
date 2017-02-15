@@ -106,6 +106,24 @@
 	A class can contain its own functions, called \textit{methods}. They always have an implicit reference to the caller object, named \textbf{self}.
 	\paragraph{Access specifiers}
 	All members of a class (attributes and methods) can be \textit{public}, \textit{protected} or \textit{private}. Public members can be accessed from anywhere, while private or protected only from inside. Protected members can also be used in derived classes (see later).
+	\paragraph{Creation and lifetime}
+	An object must be created with the \textit{new} operator. Objects are managed : they are destroyed when they aren't referenced anywhere.
+	\begin{verbatim}
+		MyClass object = new MyClass(constructorArg);
+	\end{verbatim}
+	\paragraph{Inheritance}
+	Classes can inherit each other. Every class can have only one parent class, and all methods are virtuals. If B derives from A and C from B, a reference to A may refer to a A, a B or a C.
+	
+	\subsection{Type constructors}
+	Type constructors construct types from other types. There are 3 type constructors.
+	\paragraph{Const}
+	A \textit{const T} is a T that can't be modified, but only read. For objects, const appliesto the referenced object, not to the reference.
+	Const also applies to object methods : it means the method cannot mutate itself, neither its referenced objects. The \textit{self} reference becomes a reference to const object.
+	\paragraph{Final}
+	\textit{Final} qualifier applies to an object reference that cannot reference another object in its lifetime. It doesn't mean the object can't me mutated, unless it's combined with const qualifier.
+	\paragraph{Arrays}
+	Static arrays represent a type constructor : The type \textit{T[]} is a type construced from the type T.
+
 	
 
 \end{document}

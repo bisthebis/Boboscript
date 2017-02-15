@@ -16,7 +16,7 @@
 	\paragraph{Paradigm and data model}
 	Boboscript is meant to be a procedural, \textit{C-like} language, which heavily encourage decoupling of \textit{code} and \textit{data}. Code is mainly represented through functions and data via POD structures. It supports primitive object-oriented programming, with garbage-collected objects that are the only way to have recursive data structures. No manual memory is allowed, excepted in low-level code (native C calls) : data is either stack-allocated or garbage-collected object.
 	\paragraph{Type system}
-	Boboscript is \textit{statically} and \textit{strongly typed} language, and favors \textit{immutable by default} data. It is designed for compilation to C, and thus, use the C memory model.
+	Boboscript is \textit{statically} and \textit{strongly typed} language. It is designed for compilation to C, and thus, use the C memory model.
 	\paragraph{Limitations}
 	Multi-thread support is not required, but could probably used through C native calls. Operation atomicity is not guaranteed in any case.
 	\paragraph{Modularity}

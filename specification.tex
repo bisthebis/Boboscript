@@ -123,6 +123,26 @@
 	\textit{Final} qualifier applies to an object reference that cannot reference another object in its lifetime. It doesn't mean the object can't me mutated, unless it's combined with const qualifier.
 	\paragraph{Arrays}
 	Static arrays represent a type constructor : The type \textit{T[]} is a type construced from the type T.
+	
+	
+	\newpage
+	\section{Scanning and parsing}
+	\subsection{Scanning tokens}
+	\begin{itemize}
+		\item Identifiers : Every lexeme that starts by an underscore or a letter and is followed by underscores, letters or digits is an identifier, unless it's a keyword.
+		\item String Literal : lexeme that is surrounded by quotes "". Escaped quotes inside string should be added in the future.
+		\item Char Literal : same as in C, in single quotes and contains exactly a character (or escaped space, null character etc).
+		\item Number Literal : anything that is a number, be it integer or double. If it is non-integer, it contains a dot followed by digits.
+		\item Bool Literal : true or false.
+		\item Punctuation : Comma, semicolon, dot, arrow (represented by -$>$)
+		\item Left/Right parentheses ()
+		\item Left/Right brackets \{\}
+		\item Left/Right square brackets []
+		\item \textbf{Keywords : }if, else, elseif, while, for, do, return, function, module, new, struct, class, enum, null.
+		\item \textbf{Type qualifiers : } const, final, public, private, protected.
+		\item Operators (boolean, arithmetic, comparison...)
+
+	\end{itemize}
 
 	
 

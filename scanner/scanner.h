@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QString>
 #include <QFile>
+#include <QVector>
 #include "token.h"
 
 /**

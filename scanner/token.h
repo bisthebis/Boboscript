@@ -64,7 +64,11 @@ struct Token
     };
 
 public:
-    Token();
+    /**
+      * @brief Default constructor only exist for the purpose of containers. It should not be manually used
+      */
+    Token() = default;
+    Token(Type type, QString lexeme, QVariant value, int line, int column);
 
     /**
      * @brief Type of the token.
@@ -79,6 +83,14 @@ public:
      * then it contains that value, otherwise it's the lexeme.
      */
     QVariant value;
+
+    /**
+     * @brief sub-structure containing the line and column where the token begins.
+     */
+    struct {
+        int line;
+        int column;
+    } location;
 };
 
 #endif // TOKEN_H

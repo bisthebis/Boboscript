@@ -68,7 +68,29 @@ public:
       * @brief Default constructor only exist for the purpose of containers. It should not be manually used
       */
     Token() = default;
+
+    /**
+     * @brief Construct a token with the given values.
+     * @param type
+     * @param lexeme
+     * @param value
+     * @param line
+     * @param column
+     */
     Token(Type type, QString lexeme, QVariant value, int line, int column);
+
+    /**
+     * @brief Returns a string containing every informations, including stringified type
+     * @return "(type, lexeme, line, column)"
+     */
+    QString toString() const;
+
+    /**
+     * @brief returns the stringified version of Token::Type. RETURN becomes "RETURN" etc.
+     * @param type to convert
+     * @return
+     */
+    static QString typeToString(Type t);
 
     /**
      * @brief Type of the token.
@@ -91,6 +113,8 @@ public:
         int line;
         int column;
     } location;
+
+
 };
 
 #endif // TOKEN_H

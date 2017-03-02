@@ -27,8 +27,8 @@ private:
     QString fileContent;
     QVector<Token> tokens;
     int currentChar = 0;
-    int currentLine = 0;
-    int currentRow = 0;
+    int currentLine = 1;
+    int currentRow = 1;
 };
 
 #endif // SCANNER_H

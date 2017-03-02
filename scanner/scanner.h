@@ -1,9 +1,8 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 
-#include <QTextStream>
 #include <QString>
-#include <QFile>
+#include <QChar>
 #include <QVector>
 #include "token.h"
 
@@ -14,12 +13,20 @@
 class Scanner
 {
 public:
-    Scanner();
+    Scanner(const QString& sourcePath);
+    /**
+     * @brief Read until a token is parsed, add it to the vector of tokens and return the last one (by value).
+     * @return the newest token.
+     */
+    Token nextToken();
 
 private:
-    QFile file;
-    QTextStream stream;
+    QChar peek() const;
+    QChar next();
+
+    QString fileContent;
     QVector<Token> tokens;
+    int currentChar = 0;
     int currentLine = 0;
     int currentRow = 0;
 };

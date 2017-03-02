@@ -20,6 +20,8 @@ QChar Scanner::peek() const {
 QChar Scanner::next() {
     auto result = peek();
     ++currentChar;
+    if (currentChar >= fileContent.length())
+        throw MyException("End of file reached");
     if (result == QChar::LineFeed || result == QChar::LineSeparator)
     {
         ++currentLine;
@@ -30,4 +32,13 @@ QChar Scanner::next() {
         ++currentRow;
     }
     return result;
+}
+
+Token Scanner::nextToken()
+{
+    QString lexeme;
+    lexeme += next();
+
+    //Here comes the state machine
+
 }

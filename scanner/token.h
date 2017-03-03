@@ -60,6 +60,14 @@ struct Token
         UNARY_PLUS,
         UNARY_MINUS,
 
+        EQUAL, //Asignement
+        EQ, // ==
+        GET, // >=
+        GT,
+        LT,
+        LET,
+        NEQ, //!=
+
         //Others to be added later
 
     };

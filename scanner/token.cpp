@@ -53,6 +53,13 @@ QString Token::typeToString(Type t) {
     ADD_CASE(MODULO);
     ADD_CASE(UNARY_PLUS);
     ADD_CASE(UNARY_MINUS);
+    ADD_CASE(EQUAL);
+    ADD_CASE(EQ);
+    ADD_CASE(GET);
+    ADD_CASE(GT);
+    ADD_CASE(LT);
+    ADD_CASE(LET);
+    ADD_CASE(NEQ);
     default:
         throw MyException(QString("Couldn't stringify Token::Type. Type ID is %1").arg(t));
         break;

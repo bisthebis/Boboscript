@@ -37,7 +37,40 @@ void Scanner::advance() {
     }
 }
 
-Token Scanner::nextToken()
-{
+void Scanner::skipComment() {
+    //Assumes the first character hasn't been consumed. Expects either "//" or "/*"
+    QChar first = peek();
+    QChar second = next();
+    advance(); advance();
+
+    if (first != '/')
+        throw MyException(QString("Error on parsing comment. Line %1, row %2").arg(currentLine).arg(currentRow));
+
+    if (second == '/') //One line comment
+    {
+        QChar c = peek(); advance();
+        do {
+            c = peek(); advance();
+        } while (c != QChar::LineFeed && c != QChar::LineSeparator);
+        return ;
+    }
+    else if (second == '*')
+    {
+        QChar c = peek(); advance();
+        while (true)
+        {
+            c = peek(); advance();
+            if (c == '*' && peek() == '/')
+            {
+                advance();
+                return;
+            }
+        }
+    }
+
+    throw MyException(QString("Incorrect comment. Character following '/' is %1.").arg(second));
+}
+
+Token Scanner::nextToken() {
 
 }

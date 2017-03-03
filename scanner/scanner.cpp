@@ -22,11 +22,11 @@ QChar Scanner::next() const {
 }
 
 void Scanner::advance() {
-
+    QChar current = peek();
     ++currentChar;
     if (currentChar >= fileContent.length())
         throw MyException("End of file reached");
-    if (result == QChar::LineFeed || result == QChar::LineSeparator)
+    if (current == QChar::LineFeed || current == QChar::LineSeparator)
     {
         ++currentLine;
         currentRow = 0;
@@ -69,6 +69,24 @@ void Scanner::skipComment() {
     }
 
     throw MyException(QString("Incorrect comment. Character following '/' is %1.").arg(second));
+}
+
+Token Scanner::parseCharLiteral() {
+    QChar first = peek(); advance();
+    QChar second = peek(); advance();
+    if (first != '\'')
+        throw MyException("Incorrect character literal. Doesn't start with \'");
+
+    if (second == '\\')
+        throw MyException("Escaped characters are not implemented yet");
+
+    if (peek() != '\'')
+        throw MyException("Incorrect character literal. Doesn't end with \'");
+
+    advance();
+    QString lexeme(second);
+    return Token(Token::CHAR_LIT, lexeme, second, currentLine, currentRow);
+
 }
 
 Token Scanner::nextToken() {

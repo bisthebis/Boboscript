@@ -160,4 +160,115 @@ Token Scanner::nextToken() {
         return parseStringLiteral();
     else if (firstChar == '\'')
         return parseCharLiteral();
+    else if (firstChar == '/') {
+        if (next() == '*' || next() == '/')
+        {
+            skipComment();
+            return nextToken();
+        }
+        else throw MyException("Division unimplemented yet : '/' should only be used for comments");
+    }
+    else if (firstChar == '(') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::LEFT_PAREN, "(", "(", l, r);
+    }
+    else if (firstChar == ')') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::RIGHT_PARENT, ")", ")", l, r);
+    }
+    else if (firstChar == '{') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::LEFT_BRACKET, "{", "{", l, r);
+    }
+    else if (firstChar == '}') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::RIGHT_BRACKET, "}", "}", l, r);
+    }
+    else if (firstChar == '[') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::LEFT_SQUARE_BRACKET, "[", "[", l, r);
+    }
+    else if (firstChar == ']') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::RIGHT_SQUARE_BRACKET, "[", "]", l, r);
+    }
+    else if (firstChar == '<') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        if (peek() == '=') {
+            advance();
+            return Token(Token::LET, "<=", "<=", l, r);
+        }
+        else
+            return Token(Token::LT, "<", "<", l, r);
+    }
+    else if (firstChar == '>') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        if (peek() == '=') {
+            advance();
+            return Token(Token::GET, ">=", ">=", l, r);
+        }
+        else
+            return Token(Token::GT, ">", ">", l, r);
+    }
+    else if (firstChar == '=') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        if (peek() == '=') {
+            advance();
+            return Token(Token::EQ, "==", "==", l, r);
+        }
+        else
+            return Token(Token::EQUAL, "=", "=", l, r);
+    }
+    else if (firstChar == '!') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        if (peek() == '=') {
+            advance();
+            return Token(Token::NEQ, "!=", "!=", l, r);
+        }
+        else
+            return Token(Token::NOT, "!", "!", l, r);
+    }
+    else if (firstChar == ';') {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::SEMICOLON, ";", ";", l, r);
+    }
+    else if (firstChar == '-') {
+        if (next() == '>') {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance(); return Token(Token::ARROW, "->", "->", l, r);
+        }
+        else {
+            //TODO : implement -=
+            auto l = currentLine;
+            auto r = currentRow;
+            advance();
+            return Token(Token::MINUS, "-", "-", l, r);
+        }
+    }
+
+
+    throw MyException(QString("Parse error... Line is %1, row is %2.").arg(currentLine).arg(currentRow));
 }

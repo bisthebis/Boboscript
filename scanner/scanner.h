@@ -23,7 +23,14 @@ public:
 private:
     QChar peek() const; //Current character
     QChar next() const; //Read next character
-    QChar advance();
+    void advance();
+
+    //Utility functions for nextToken().
+    Token parseAlphaNum(); //Parse an expression that starts with a letter : identifiers, reserved words, bool literals
+    Token parseStringLiteral();
+    Token parseCharLiteral();
+    Token parseNumberLiteral();
+    void skipComment();
 
     QString fileContent;
     QVector<Token> tokens;

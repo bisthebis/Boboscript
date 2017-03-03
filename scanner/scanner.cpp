@@ -24,8 +24,6 @@ QChar Scanner::next() const {
 void Scanner::advance() {
     QChar current = peek();
     ++currentChar;
-    if (currentChar >= fileContent.length())
-        throw MyException("End of file reached");
     if (current == QChar::LineFeed || current == QChar::LineSeparator)
     {
         ++currentLine;

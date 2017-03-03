@@ -3,6 +3,11 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDebug>
+#include <QMap>
+
+// Static global array, defined in the end of this file
+static QMap<QString, Token::Type> initKeywordsList();
+static QMap<QString, Token::Type> keywordsList = initKeywordsList();
 
 Scanner::Scanner(const QString& sourcePath) {
     QFile file(sourcePath);
@@ -135,8 +140,12 @@ Token Scanner::parseAlphaNum() {
         current = peek();
     }
 
-    //TODO : is it a keyword ?
-    return Token(Token::IDENTIFIER, lexeme, lexeme, currentLine, currentRow);
+    auto keyword = keywordsList.find(lexeme);
+    static const auto end = keywordsList.end();
+    if (keyword == end)
+        return Token(Token::IDENTIFIER, lexeme, lexeme, currentLine, currentRow);
+    else
+        return Token(*keyword, lexeme, lexeme, currentLine, currentRow);
 }
 
 Token Scanner::nextToken() {
@@ -345,4 +354,31 @@ Token Scanner::nextToken() {
 
 
     throw MyException(QString("Parse error... Line is %1, row is %2.").arg(currentLine).arg(currentRow));
+}
+
+
+
+static QMap<QString, Token::Type> initKeywordsList() {
+    QMap<QString, Token::Type> map;
+    map["if"] = Token::IF;
+    map["else"] = Token::ELSE;
+    map["elseif"] = Token::ELSEIF;
+    map["module"] = Token::MODULE;
+    map["function"] = Token::FUNCTION;
+    map["class"] = Token::CLASS;
+    map["struct"] = Token::STRUCT;
+    map["enum"] = Token::ENUM;
+    map["private"] = Token::PRIVATE;
+    map["public"] = Token::PUBLIC;
+    map["protected"] = Token::PROTECTED;
+    map["const"] = Token::CONST;
+    map["final"] = Token::FINAL;
+    map["do"] = Token::DO;
+    map["while"] = Token::WHILE;
+    map["for"] = Token::FOR;
+    map["return"] = Token::RETURN;
+    map["null"] = Token::NULL_LIT;
+    map["new"] = Token::NEW;
+
+    return map;
 }

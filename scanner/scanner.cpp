@@ -142,9 +142,13 @@ Token Scanner::parseAlphaNum() {
 }
 
 Token Scanner::nextToken() {
+    if (currentChar >= fileContent.length())
+        return Token(Token::END_OF_FILE, "EOF", "EOF", currentLine, currentRow);
     QChar firstChar = peek();
     while (firstChar.isSpace()) {
         advance();
+        if (currentChar >= fileContent.length())
+            return Token(Token::END_OF_FILE, "EOF", "EOF", currentLine, currentRow);
         firstChar = peek();
     }
 

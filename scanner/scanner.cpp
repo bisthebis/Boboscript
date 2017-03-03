@@ -89,6 +89,24 @@ Token Scanner::parseCharLiteral() {
 
 }
 
+Token Scanner::parseStringLiteral() {
+    if (peek() != '"')
+        throw MyException("String not starting with double quotes");
+
+    advance();
+    QString lexeme;
+    while (peek() != '"')
+    {
+        lexeme += peek();
+        if (peek() == '\\')
+            throw MyException("Escaped characters are not implemented yet");
+
+        advance();
+    }
+    advance();
+    return Token(Token::STR_LIT, lexeme, lexeme, currentLine, currentRow);
+}
+
 Token Scanner::nextToken() {
 
 }

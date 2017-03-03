@@ -148,4 +148,12 @@ Token Scanner::nextToken() {
         firstChar = peek();
     }
 
+    if (firstChar.isDigit())
+        return parseNumberLiteral();
+    else if (firstChar.isLetter() || firstChar == '_')
+        return parseAlphaNum();
+    else if (firstChar == '"')
+        return parseStringLiteral();
+    else if (firstChar == '\'')
+        return parseCharLiteral();
 }

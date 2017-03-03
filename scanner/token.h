@@ -60,6 +60,7 @@ struct Token
         UNARY_PLUS,
         UNARY_MINUS,
 
+        //Comparison
         EQUAL, //Asignement
         EQ, // ==
         GET, // >=
@@ -67,6 +68,12 @@ struct Token
         LT,
         LET,
         NEQ, //!=
+
+        //Logical operators
+        AND, //&&
+        OR, // ||
+        NOT, // !
+
 
         //Others to be added later
 

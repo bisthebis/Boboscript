@@ -21,8 +21,9 @@ public:
     Token nextToken();
 
 private:
-    QChar peek() const;
-    QChar next();
+    QChar peek() const; //Current character
+    QChar next() const; //Read next character
+    QChar advance();
 
     QString fileContent;
     QVector<Token> tokens;

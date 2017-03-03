@@ -164,7 +164,19 @@ Token Scanner::nextToken() {
             skipComment();
             return nextToken();
         }
-        else throw MyException("Division unimplemented yet : '/' should only be used for comments");
+        else if (next() == '=')
+        {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance();
+            return Token(Token::DIVISION_EQ, "/=", "/=", l, r);
+        }
+        else {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance();
+            return Token(Token::DIVISION, "/", "/", l, r);
+        }
     }
     else if (firstChar == '(') {
         auto l = currentLine;
@@ -258,14 +270,78 @@ Token Scanner::nextToken() {
             auto r = currentRow;
             advance(); advance(); return Token(Token::ARROW, "->", "->", l, r);
         }
+        else if (next() == '='){
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance();
+            return Token(Token::MINUS_EQ, "-=", "-=", l, r);
+        }
         else {
-            //TODO : implement -=
             auto l = currentLine;
             auto r = currentRow;
             advance();
             return Token(Token::MINUS, "-", "-", l, r);
         }
     }
+    else if (firstChar == '+') {
+        if (next() == '='){
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance();
+            return Token(Token::PLUS_EQ, "+=", "+=", l, r);
+        }
+        else {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance();
+            return Token(Token::PLUS, "+", "+", l, r);
+        }
+    }
+    else if (firstChar == '*') {
+        if (next() == '='){
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance();
+            return Token(Token::TIMES_EQ, "*=", "*=", l, r);
+        }
+        else {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance();
+            return Token(Token::TIMES, "*", "*", l, r);
+        }
+    }
+    else if (firstChar == '%') {
+        if (next() == '='){
+            auto l = currentLine;
+            auto r = currentRow;
+            advance(); advance();
+            return Token(Token::MODULO_EQ, "%=", "%=", l, r);
+        }
+        else {
+            auto l = currentLine;
+            auto r = currentRow;
+            advance();
+            return Token(Token::MODULO, "%", "%", l, r);
+        }
+    }
+    else if (firstChar == '.')
+    {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::DOT, ".", ".", l, r);
+    }
+    else if (firstChar == ',')
+    {
+        auto l = currentLine;
+        auto r = currentRow;
+        advance();
+        return Token(Token::COMMA, ",", ",", l, r);
+    }
+
+
+
 
 
     throw MyException(QString("Parse error... Line is %1, row is %2.").arg(currentLine).arg(currentRow));

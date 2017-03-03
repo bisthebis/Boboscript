@@ -127,6 +127,25 @@ Token Scanner::parseNumberLiteral() {
 
 }
 
+Token Scanner::parseAlphaNum() {
+    QString lexeme = peek(); advance();
+    QChar current = peek();
+    while (current.isDigit() || current.isLetter() || current == '_')
+    {
+        lexeme += current;
+        advance();
+        current = peek();
+    }
+
+    //TODO : is it a keyword ?
+    return Token(Token::IDENTIFIER, lexeme, lexeme, currentLine, currentRow);
+}
+
 Token Scanner::nextToken() {
+    QChar firstChar = peek();
+    while (firstChar.isSpace()) {
+        advance();
+        firstChar = peek();
+    }
 
 }

@@ -60,6 +60,13 @@ struct Token
         UNARY_PLUS,
         UNARY_MINUS,
 
+        //Arithmetic assignment (+=, *= etc)
+        PLUS_EQ,
+        MINUS_EQ,
+        TIMES_EQ,
+        DIVISION_EQ,
+        MODULO_EQ,
+
         //Comparison
         EQUAL, //Asignement
         EQ, // ==

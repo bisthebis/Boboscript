@@ -51,8 +51,6 @@ QString Token::typeToString(Type t) {
     ADD_CASE(TIMES);
     ADD_CASE(DIVISION);
     ADD_CASE(MODULO);
-    ADD_CASE(UNARY_PLUS);
-    ADD_CASE(UNARY_MINUS);
     ADD_CASE(EQUAL);
     ADD_CASE(EQ);
     ADD_CASE(GET);

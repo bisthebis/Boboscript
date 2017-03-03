@@ -57,8 +57,6 @@ struct Token
         TIMES,
         DIVISION,
         MODULO,
-        UNARY_PLUS,
-        UNARY_MINUS,
 
         //Arithmetic assignment (+=, *= etc)
         PLUS_EQ,

@@ -107,6 +107,26 @@ Token Scanner::parseStringLiteral() {
     return Token(Token::STR_LIT, lexeme, lexeme, currentLine, currentRow);
 }
 
+Token Scanner::parseNumberLiteral() {
+    QString lexeme = peek(); advance();
+    QChar current = peek();
+    bool isInteger = true;
+    while (current.isDigit() || current == '.')
+    {
+        if (current == '.')
+            isInteger = false;
+        lexeme += current;
+        advance();
+        current = peek();
+    }
+
+    if (isInteger)
+        return Token(Token::INT_LIT, lexeme, lexeme.toULongLong(), currentLine, currentRow);
+    else
+        return Token(Token::DOUBLE_LIT, lexeme, lexeme.toDouble(), currentLine, currentRow);
+
+}
+
 Token Scanner::nextToken() {
 
 }

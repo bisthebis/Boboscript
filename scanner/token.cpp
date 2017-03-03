@@ -10,6 +10,7 @@ QString Token::typeToString(Type t) {
 #define ADD_CASE(type) case(type): return #type;
 
     switch (t) {
+    ADD_CASE(END_OF_FILE);
     ADD_CASE(IDENTIFIER);
     ADD_CASE(STR_LIT);
     ADD_CASE(CHAR_LIT);

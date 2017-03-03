@@ -10,6 +10,7 @@
 struct Token
 {
     enum Type {
+        END_OF_FILE,
         IDENTIFIER,
 
         STR_LIT,

@@ -16,6 +16,7 @@ class Scanner
 {
 public:
     Scanner(const QString& sourcePath);
+    Scanner(const QJsonDocument& sourceDoc);
     Scanner() = delete;
     Scanner(const Scanner& src) = delete;
     Scanner(Scanner &&src) = delete;
@@ -35,6 +36,7 @@ public:
     QSharedPointer<const QJsonDocument> JsonDoc();
 
 private:
+
     QChar peek() const; //Current character
     QChar next() const; //Read next character
     void advance();

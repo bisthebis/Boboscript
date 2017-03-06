@@ -28,6 +28,17 @@ Scanner::Scanner(const QString& sourcePath) {
     }
 }
 
+Scanner::Scanner(const QJsonDocument &sourceDoc) {
+    //Build a "fake" scanner containing only a pointer to a copy of the doc and the vector of tokens.
+    const QJsonArray& array = sourceDoc.array();
+    for (const auto& val : array)
+    {
+        _tokens.append(Token::fromJsonObject(val.toObject()));
+    }
+    _doc = QSharedPointer<QJsonDocument>(new QJsonDocument(sourceDoc));
+}
+
+
 QChar Scanner::peek() const {
     return fileContent.at(currentChar);
 }

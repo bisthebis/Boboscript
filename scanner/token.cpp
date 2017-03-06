@@ -81,3 +81,13 @@ QString Token::toString() const {
             .arg(location.line)
             .arg(location.column);
 }
+
+QJsonObject Token::toJsonObject() const {
+    QJsonObject obj;
+    obj["type"] = typeToString(type);
+    obj["line"] = location.line;
+    obj["column"] = location.column;
+    obj["lexeme"] = lexeme;
+    return obj;
+
+}

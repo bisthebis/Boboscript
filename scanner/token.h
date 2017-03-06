@@ -2,6 +2,7 @@
 #define TOKEN_H
 
 #include <QVariant>
+#include <QJsonObject>
 #include <QString>
 
 /**
@@ -105,6 +106,12 @@ public:
      * @return "(type, lexeme, line, column)"
      */
     QString toString() const;
+
+    /**
+     * @brief Returns a QJSonObject containing token data
+     * @return a QJsonObject
+     */
+    QJsonObject toJsonObject() const;
 
     /**
      * @brief returns the stringified version of Token::Type. RETURN becomes "RETURN" etc.

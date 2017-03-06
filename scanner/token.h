@@ -121,6 +121,13 @@ public:
     static QString typeToString(Type t);
 
     /**
+     * @brief Parse a string and return the relative type
+     * @param string containing a type name.
+     * @return
+     */
+    static Type stringToType(QString s);
+
+    /**
      * @brief Type of the token.
      */
     Type type;

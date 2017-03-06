@@ -155,6 +155,48 @@ QJsonObject Token::toJsonObject() const {
     obj["line"] = location.line;
     obj["column"] = location.column;
     obj["lexeme"] = lexeme;
+    obj["value"] = value.toString();
+    if (type == Token::INT_LIT)
+        obj["value"] = lexeme.toLongLong();
+    else if (type == Token::DOUBLE_LIT)
+        obj["value"] = lexeme.toDouble();
+    else if (type == Token::BOOL_LIT)
+    {
+        ; //Store it as a string
+    }
+    else if (type == Token::STR_LIT)
+    {
+        ; //Store it as a string... For now
+    }
+    else if (type == Token::CHAR_LIT)
+    {
+        ; //Store it as a string... For now
+    }
     return obj;
 
+}
+
+Token Token::fromJsonObject(const QJsonObject &obj) {
+    int line = obj["line"].toInt();
+    int column = obj["column"].toInt();
+    QString lexeme = obj["lexeme"].toString();
+    Type type = Token::stringToType(obj["type"].toString());
+    QString valueStr = obj["value"].toString();
+    QVariant value = valueStr;
+    if (type == Token::INT_LIT)
+        value = valueStr.toULongLong();
+    else if (type == Token::DOUBLE_LIT)
+        value = valueStr.toDouble();
+    else if (type == Token::BOOL_LIT)
+        value = valueStr == "true";
+    else if (type == Token::STR_LIT)
+    {
+        ; //TODO
+    }
+    else if (type == Token::CHAR_LIT)
+    {
+        ; //TODO
+    }
+
+    return Token(type, lexeme, value, line, column);
 }

@@ -121,11 +121,18 @@ public:
     static QString typeToString(Type t);
 
     /**
-     * @brief Parse a string and return the relative type
+     * @brief Parse a string and return the according type. Throws if meets an incorrect string
      * @param string containing a type name.
      * @return
      */
     static Type stringToType(QString s);
+
+    /**
+     * @brief Read a JSON Object and transform it in a Token
+     * @param Object to be read.
+     * @return
+     */
+    static Token fromJsonObject(const QJsonObject& src);
 
     /**
      * @brief Type of the token.

@@ -12,14 +12,14 @@ int main(int argc, char *argv[])
             targetFile = a.arguments().at(1);
         else
             throw MyException("Wrong argument count");
-        Scanner scan(targetFile);
+        Scanner scanner(targetFile);
+        auto tokens = scanner.tokens();
 
-        while (true) {
-            auto t = scan.nextToken();
-            if (t.type == Token::END_OF_FILE)
-                break;
+        for (const Token& t : tokens)
             qDebug() << t.toString();
-        }
+
+
+
     }
     catch (MyException& e) {
         qDebug() << "Exception occured : " << e.msg;

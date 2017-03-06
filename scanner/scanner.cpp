@@ -16,6 +16,14 @@ Scanner::Scanner(const QString& sourcePath) {
 
     QTextStream stream(&file);
     fileContent = stream.readAll();
+
+    /* Populate the vector */
+    while (true) {
+        Token t = nextToken();
+        if (t.type == Token::END_OF_FILE)
+            return;
+        _tokens.append(t);
+    }
 }
 
 QChar Scanner::peek() const {

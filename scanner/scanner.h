@@ -14,16 +14,19 @@ class Scanner
 {
 public:
     Scanner(const QString& sourcePath);
+
     /**
-     * @brief Read until a token is parsed, add it to the vector of tokens and return the last one (by value).
-     * @return the newest token.
+     * @brief Accessor to the vecotr of tokens parsed at construction time.
+     * @return const reference to the vector of tokens.
      */
-    Token nextToken();
+    const QVector<Token>& tokens() const {return _tokens;}
 
 private:
     QChar peek() const; //Current character
     QChar next() const; //Read next character
     void advance();
+
+    Token nextToken();
 
     //Utility functions for nextToken().
     Token parseAlphaNum(); //Parse an expression that starts with a letter : identifiers, reserved words, bool literals
@@ -33,7 +36,7 @@ private:
     void skipComment();
 
     QString fileContent;
-    QVector<Token> tokens;
+    QVector<Token> _tokens;
     int currentChar = 0;
     int currentLine = 1;
     int currentRow = 1;

@@ -14,6 +14,11 @@ class Scanner
 {
 public:
     Scanner(const QString& sourcePath);
+    Scanner() = delete;
+    Scanner(const Scanner& src) = delete;
+    Scanner(Scanner &&src) = delete;
+    Scanner& operator= (const Scanner& src) = delete;
+    Scanner& operator= (Scanner&& src) = delete;
 
     /**
      * @brief Accessor to the vecotr of tokens parsed at construction time.

@@ -4,6 +4,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QMap>
+#include <QJsonArray>
+#include <QJsonObject>
 
 // Static global array, defined in the end of this file
 static QMap<QString, Token::Type> initKeywordsList();
@@ -362,6 +364,19 @@ Token Scanner::nextToken() {
 
 
     throw MyException(QString("Parse error... Line is %1, row is %2.").arg(currentLine).arg(currentRow));
+}
+
+QSharedPointer<const QJsonDocument> Scanner::JsonDoc() {
+    //Lazyness
+    if (_doc)
+        return _doc;
+
+    QJsonArray JsonTokens;
+    for (const Token& t : this->tokens())
+        JsonTokens.append(t.toJsonObject());
+
+    _doc = QSharedPointer<QJsonDocument>(new QJsonDocument(JsonTokens));
+    return _doc;
 }
 
 

@@ -4,6 +4,8 @@
 #include <QString>
 #include <QChar>
 #include <QVector>
+#include <QSharedPointer>
+#include <QJsonDocument>
 #include "token.h"
 
 /**
@@ -21,10 +23,16 @@ public:
     Scanner& operator= (Scanner&& src) = delete;
 
     /**
-     * @brief Accessor to the vecotr of tokens parsed at construction time.
+     * @brief Accessor to the vector of tokens parsed at construction time.
      * @return const reference to the vector of tokens.
      */
     const QVector<Token>& tokens() const {return _tokens;}
+
+    /**
+     * @brief Accessor to a (const) JSonDocument storing all tokens as an array.
+     * @return a shared pointer.
+     */
+    QSharedPointer<const QJsonDocument> JsonDoc();
 
 private:
     QChar peek() const; //Current character
@@ -45,6 +53,8 @@ private:
     int currentChar = 0;
     int currentLine = 1;
     int currentRow = 1;
+
+    QSharedPointer<QJsonDocument> _doc;
 };
 
 #endif // SCANNER_H

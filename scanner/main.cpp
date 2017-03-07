@@ -2,23 +2,19 @@
 #include "token.h"
 #include "scanner.h"
 #include "myexception.h"
+#include "command_line.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     try {
-        QString targetFile;
-        if (argc == 2)
-            targetFile = a.arguments().at(1);
-        else
+
+        if (argc < 2)
             throw MyException("Wrong argument count");
-        Scanner scanner(targetFile);
-        auto tokens = scanner.tokens();
+        QString targetFile = argv[1];
 
-        for (const Token& t : tokens)
-            qDebug() << t.toString();
-
-
+        for (int i = 1; i < argc; ++i)
+            tokenizeFile(argv[i]);
 
     }
     catch (MyException& e) {

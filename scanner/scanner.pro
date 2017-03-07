@@ -11,9 +11,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     scanner.cpp \
-    token.cpp
+    token.cpp \
+    command_line.cpp
 
 HEADERS += \
     scanner.h \
     token.h \
-    myexception.h
+    myexception.h \
+    command_line.h

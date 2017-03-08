@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 
         if (argc < 2)
             throw MyException("Wrong argument count");
-        QString targetFile = argv[1];
 
         for (int i = 1; i < argc; ++i)
             tokenizeFile(argv[i]);

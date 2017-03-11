@@ -7,6 +7,7 @@ CONFIG -= app_bundle
 
 TEMPLATE = subdirs
 
-SUBDIRS = app scannerlib
+SUBDIRS = app scannerlib tests
 
 app.depends = scannerlib
+test.depends = scannerlib

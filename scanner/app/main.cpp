@@ -13,7 +13,11 @@ int main(int argc, char *argv[])
             throw MyException("Wrong argument count");
 
         for (int i = 1; i < argc; ++i)
-            tokenizeFile(argv[i]);
+        {
+            QString path = argv[i];
+            qDebug() << "Tokenizing file : " << path;
+            tokenizeFile(path);
+        }
 
     }
     catch (MyException& e) {

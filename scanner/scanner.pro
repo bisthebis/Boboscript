@@ -1,21 +1,12 @@
-QT += core
+QT += core testlib
 QT -= gui
 
-CONFIG += c++11
-
-TARGET = scanner
+CONFIG += c++14
 CONFIG += console
 CONFIG -= app_bundle
 
-TEMPLATE = app
+TEMPLATE = subdirs
 
-SOURCES += main.cpp \
-    scanner.cpp \
-    token.cpp \
-    command_line.cpp
+SUBDIRS = app scannerlib
 
-HEADERS += \
-    scanner.h \
-    token.h \
-    myexception.h \
-    command_line.h
+app.depends = scannerlib

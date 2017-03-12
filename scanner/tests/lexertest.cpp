@@ -27,7 +27,7 @@ void LexerTest::expectedTokenList_data() {
         Token(Token::LEFT_PAREN, "(", "(", 1, 15),
         Token(Token::IDENTIFIER, "Double", "Double", 1, 22),
         Token(Token::IDENTIFIER, "x", "x", 1, 24),
-        Token(Token::RIGHT_PARENT, ")", ")", 1, 24),
+        Token(Token::RIGHT_PAREN, ")", ")", 1, 24),
         Token(Token::ARROW, "->", "->", 1, 26),
         Token(Token::IDENTIFIER, "Double", "Double", 1, 35),
         Token(Token::LEFT_BRACKET, "{", "{", 1, 36),
@@ -44,12 +44,12 @@ void LexerTest::expectedTokenList_data() {
         Token(Token::LEFT_PAREN, "(", "(", 1, 1),
         Token(Token::LEFT_PAREN, "(", "(", 1, 2),
         Token(Token::IDENTIFIER, "x", "x", 1, 4),
-        Token(Token::RIGHT_PARENT, ")", ")", 1, 4),
+        Token(Token::RIGHT_PAREN, ")", ")", 1, 4),
         Token(Token::TIMES, "*", "*", 1, 6),
         Token(Token::LEFT_PAREN, "(", "(", 1, 8),
         Token(Token::IDENTIFIER, "x", "x", 1, 10),
-        Token(Token::RIGHT_PARENT, ")", ")", 1, 10),
-        Token(Token::RIGHT_PARENT, ")", ")", 1, 11),
+        Token(Token::RIGHT_PAREN, ")", ")", 1, 10),
+        Token(Token::RIGHT_PAREN, ")", ")", 1, 11),
     };
 
     QTest::newRow("Function definition") << funcDefInput << funcDefExpected;

@@ -242,7 +242,7 @@ Token Scanner::nextToken() {
         auto l = currentLine;
         auto r = currentRow;
         advance();
-        return Token(Token::RIGHT_PARENT, ")", ")", l, r);
+        return Token(Token::RIGHT_PAREN, ")", ")", l, r);
     }
     else if (firstChar == '{') {
         auto l = currentLine;

@@ -26,7 +26,7 @@ struct Token
         ARROW, // "->"
 
         LEFT_PAREN,
-        RIGHT_PARENT,
+        RIGHT_PAREN,
         LEFT_BRACKET,
         RIGHT_BRACKET,
         LEFT_SQUARE_BRACKET,

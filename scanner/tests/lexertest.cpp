@@ -12,13 +12,16 @@ void LexerTest::initTestCase() {
 
 void LexerTest::cleanupTestCase() {
 }
+Q_DECLARE_METATYPE(QVector<Token>)
+void LexerTest::expectedTokenList_data() {
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<QVector<Token>>("expected");
 
-void LexerTest::expectedTokenList() {
-    static const QString input = "function twice(Double x) -> Double {\n"
+    static const QString funcDefInput = "function twice(Double x) -> Double {\n"
                                  "\treturn 2 * x;\n"
                                  "}";
 
-    static const QVector<Token> expected = {
+    static const QVector<Token> funcDefExpected = {
         Token(Token::FUNCTION, "function", "function", 1, 9),
         Token(Token::IDENTIFIER, "twice", "twice", 1, 15),
         Token(Token::LEFT_PAREN, "(", "(", 1, 15),
@@ -36,16 +39,39 @@ void LexerTest::expectedTokenList() {
         Token(Token::RIGHT_BRACKET, "}", "}", 3, 0),
     };
 
+    static const QString nestedParenthesisInput = "((x) * (x))";
+    static const QVector<Token> nestedParenthesisExpected = {
+        Token(Token::LEFT_PAREN, "(", "(", 1, 1),
+        Token(Token::LEFT_PAREN, "(", "(", 1, 2),
+        Token(Token::IDENTIFIER, "x", "x", 1, 4),
+        Token(Token::RIGHT_PARENT, ")", ")", 1, 4),
+        Token(Token::TIMES, "*", "*", 1, 6),
+        Token(Token::LEFT_PAREN, "(", "(", 1, 8),
+        Token(Token::IDENTIFIER, "x", "x", 1, 10),
+        Token(Token::RIGHT_PARENT, ")", ")", 1, 10),
+        Token(Token::RIGHT_PARENT, ")", ")", 1, 11),
+    };
+
+    QTest::newRow("Function definition") << funcDefInput << funcDefExpected;
+    QTest::newRow("Nested parenthesis") << nestedParenthesisInput << nestedParenthesisExpected;
+
+}
+
+void LexerTest::expectedTokenList() {
+
+    QFETCH(QString, input);
+    QFETCH(QVector<Token>, expected);
+
     auto scanner = Scanner::fromString(input);
     auto result = scanner.tokens();
     QCOMPARE(result.size(), expected.size());
     for (int i = 0; i < expected.size(); ++i)
     {
-        QCOMPARE(expected[i].type, result[i].type);
-        QCOMPARE(expected[i].lexeme, result[i].lexeme);
-        QCOMPARE(expected[i].value, result[i].value);
-        QCOMPARE(expected[i].location.line, result[i].location.line);
-        QCOMPARE(expected[i].location.column, result[i].location.column);
+        QCOMPARE(result[i].type, expected[i].type);
+        QCOMPARE(result[i].lexeme, expected[i].lexeme);
+        QCOMPARE(result[i].value, expected[i].value);
+        QCOMPARE(result[i].location.line, expected[i].location.line);
+        QCOMPARE(result[i].location.column, expected[i].location.column);
     }
 
 }

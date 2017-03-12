@@ -15,13 +15,12 @@
 class Scanner
 {
 public:
-    Scanner(const QString& sourcePath);
-    Scanner(const QJsonDocument& sourceDoc);
-    Scanner() = delete;
-    Scanner(const Scanner& src) = delete;
-    Scanner(Scanner &&src) = delete;
-    Scanner& operator= (const Scanner& src) = delete;
-    Scanner& operator= (Scanner&& src) = delete;
+
+    static Scanner fromFile(const QString& path);
+    static Scanner fromString(const QString& content);
+    static Scanner fromJson(const QJsonDocument& sourceDoc);
+
+    Scanner(Scanner &&src) = default;
 
     /**
      * @brief Accessor to the vector of tokens parsed at construction time.
@@ -36,6 +35,18 @@ public:
     QSharedPointer<const QJsonDocument> JsonDoc();
 
 private:
+    //Private constructor from a file to tokenize OR the content.
+    Scanner(const QString& pathOrContent, bool isPath);
+    //Utility
+    void doParse();
+    //Private constructor
+    Scanner(const QJsonDocument& sourceDoc);
+
+    Scanner() = delete;
+    Scanner(const Scanner& src) = delete;
+
+    Scanner& operator= (const Scanner& src) = delete;
+    Scanner& operator= (Scanner&& src) = delete;
 
     QChar peek() const; //Current character
     QChar next() const; //Read next character

@@ -11,14 +11,38 @@
 static QMap<QString, Token::Type> initKeywordsList();
 static QMap<QString, Token::Type> keywordsList = initKeywordsList();
 
-Scanner::Scanner(const QString& sourcePath) {
-    QFile file(sourcePath);
+Scanner::Scanner(const QString& pathOrContent, bool isPath) {
+    if (!isPath) {
+        fileContent = pathOrContent;
+        doParse();
+        return;
+    }
+
+    QFile file(pathOrContent);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        throw MyException(QString("Couldn't not open file %1. Error is : %2.").arg(sourcePath).arg(file.errorString()));
+        throw MyException(QString("Couldn't not open file %1. Error is : %2.").arg(pathOrContent).arg(file.errorString()));
 
     QTextStream stream(&file);
     fileContent = stream.readAll();
+    doParse();
 
+
+}
+
+Scanner Scanner::fromFile(const QString &path) {
+    return Scanner(path, true);
+}
+
+Scanner Scanner::fromString(const QString &content)
+{
+    return Scanner(content, false);
+}
+
+Scanner Scanner::fromJson(const QJsonDocument &sourceDoc) {
+    return Scanner(sourceDoc);
+}
+
+void Scanner::doParse() {
     /* Populate the vector */
     while (true) {
         Token t = nextToken();

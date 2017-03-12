@@ -13,7 +13,7 @@ void tokenizeFile(const QString &path) {
     outputFile.chop(3);
     outputFile += "_tokens.json";
 
-    Scanner scanner(path);
+    auto scanner = Scanner::fromFile(path);
 
     auto data = scanner.JsonDoc()->toJson();
     QFile file(outputFile);

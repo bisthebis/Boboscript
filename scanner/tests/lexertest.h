@@ -11,7 +11,7 @@ public:
 
 private slots:
     void initTestCase();
-    void succeed();
+    void expectedTokenList();
     void cleanupTestCase();
 };
 

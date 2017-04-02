@@ -12,4 +12,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 add_subdirectory(scannerlib)
 add_subdirectory(scannerlib_tests)
+add_subdirectory(parserlib)
+add_subdirectory(parserlib_tests)
 add_subdirectory(app)

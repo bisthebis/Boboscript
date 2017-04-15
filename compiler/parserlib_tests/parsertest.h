@@ -12,7 +12,7 @@ public:
 private slots:
     void initTestCase();
     void dummySuccess();
-    //void expectedAST_data();
+    void expectedAST_data();
     void expectedAST();
     void cleanupTestCase();
 };

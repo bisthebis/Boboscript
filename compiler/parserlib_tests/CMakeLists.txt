@@ -1,6 +1,6 @@
 include_directories(${CMAKE_SOURCE_DIR}/scannerlib ${CMAKE_SOURCE_DIR}/parserlib)
 
-set(SOURCE main.cpp parsertest.h parsertest.cpp resources.qrc)
+set(SOURCE main.cpp parsertest.h parsertest.cpp resources.qrc sample_1_tokens.json)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 

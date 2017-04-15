@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/samples">
+    <qresource>
         <file>sample_1_tokens.json</file>
     </qresource>
 </RCC>

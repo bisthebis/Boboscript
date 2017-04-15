@@ -1,0 +1,7 @@
+module SAMPLE2 {
+	twice(Double) -> Double,
+};
+
+function twice(Double x) -> Double {
+	return 2 * x;
+};

@@ -1,0 +1,21 @@
+module SAMPLE {
+	Double abs(Double), // abs(Double) -> Double is also a correct syntax
+};
+
+const Double pi = 3.14;
+bool iLoveMyWife = false;
+String name = "Boris Martin !";
+Char letter = 'z';
+
+function abs(Double x) -> Double { /* blabla*/
+	if (!(x > 0))
+	{
+		//Do seomthing dumb
+		x.signum.switch(true, false);
+		return x;
+	}
+	else
+	{
+		return x;
+	}
+};

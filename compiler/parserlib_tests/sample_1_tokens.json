@@ -1,0 +1,520 @@
+[
+    {
+        "column": 7,
+        "lexeme": "module",
+        "line": 1,
+        "type": "MODULE",
+        "value": "module"
+    },
+    {
+        "column": 14,
+        "lexeme": "SAMPLE",
+        "line": 1,
+        "type": "IDENTIFIER",
+        "value": "SAMPLE"
+    },
+    {
+        "column": 15,
+        "lexeme": "{",
+        "line": 1,
+        "type": "LEFT_BRACKET",
+        "value": "{"
+    },
+    {
+        "column": 7,
+        "lexeme": "Double",
+        "line": 2,
+        "type": "IDENTIFIER",
+        "value": "Double"
+    },
+    {
+        "column": 11,
+        "lexeme": "abs",
+        "line": 2,
+        "type": "IDENTIFIER",
+        "value": "abs"
+    },
+    {
+        "column": 11,
+        "lexeme": "(",
+        "line": 2,
+        "type": "LEFT_PAREN",
+        "value": "("
+    },
+    {
+        "column": 18,
+        "lexeme": "Double",
+        "line": 2,
+        "type": "IDENTIFIER",
+        "value": "Double"
+    },
+    {
+        "column": 18,
+        "lexeme": ")",
+        "line": 2,
+        "type": "RIGHT_PAREN",
+        "value": ")"
+    },
+    {
+        "column": 19,
+        "lexeme": ",",
+        "line": 2,
+        "type": "COMMA",
+        "value": ","
+    },
+    {
+        "column": 0,
+        "lexeme": "}",
+        "line": 3,
+        "type": "RIGHT_BRACKET",
+        "value": "}"
+    },
+    {
+        "column": 1,
+        "lexeme": ";",
+        "line": 3,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 5,
+        "lexeme": "const",
+        "line": 5,
+        "type": "CONST",
+        "value": "const"
+    },
+    {
+        "column": 12,
+        "lexeme": "Double",
+        "line": 5,
+        "type": "IDENTIFIER",
+        "value": "Double"
+    },
+    {
+        "column": 15,
+        "lexeme": "pi",
+        "line": 5,
+        "type": "IDENTIFIER",
+        "value": "pi"
+    },
+    {
+        "column": 16,
+        "lexeme": "=",
+        "line": 5,
+        "type": "EQUAL",
+        "value": "="
+    },
+    {
+        "column": 22,
+        "lexeme": "3.14",
+        "line": 5,
+        "type": "DOUBLE_LIT",
+        "value": 3.14
+    },
+    {
+        "column": 22,
+        "lexeme": ";",
+        "line": 5,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 4,
+        "lexeme": "bool",
+        "line": 6,
+        "type": "IDENTIFIER",
+        "value": "bool"
+    },
+    {
+        "column": 16,
+        "lexeme": "iLoveMyWife",
+        "line": 6,
+        "type": "IDENTIFIER",
+        "value": "iLoveMyWife"
+    },
+    {
+        "column": 17,
+        "lexeme": "=",
+        "line": 6,
+        "type": "EQUAL",
+        "value": "="
+    },
+    {
+        "column": 24,
+        "lexeme": "false",
+        "line": 6,
+        "type": "IDENTIFIER",
+        "value": "false"
+    },
+    {
+        "column": 24,
+        "lexeme": ";",
+        "line": 6,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 6,
+        "lexeme": "String",
+        "line": 7,
+        "type": "IDENTIFIER",
+        "value": "String"
+    },
+    {
+        "column": 11,
+        "lexeme": "name",
+        "line": 7,
+        "type": "IDENTIFIER",
+        "value": "name"
+    },
+    {
+        "column": 12,
+        "lexeme": "=",
+        "line": 7,
+        "type": "EQUAL",
+        "value": "="
+    },
+    {
+        "column": 30,
+        "lexeme": "Boris Martin !",
+        "line": 7,
+        "type": "STR_LIT",
+        "value": "Boris Martin !"
+    },
+    {
+        "column": 30,
+        "lexeme": ";",
+        "line": 7,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 4,
+        "lexeme": "Char",
+        "line": 8,
+        "type": "IDENTIFIER",
+        "value": "Char"
+    },
+    {
+        "column": 11,
+        "lexeme": "letter",
+        "line": 8,
+        "type": "IDENTIFIER",
+        "value": "letter"
+    },
+    {
+        "column": 12,
+        "lexeme": "=",
+        "line": 8,
+        "type": "EQUAL",
+        "value": "="
+    },
+    {
+        "column": 17,
+        "lexeme": "z",
+        "line": 8,
+        "type": "CHAR_LIT",
+        "value": "z"
+    },
+    {
+        "column": 17,
+        "lexeme": ";",
+        "line": 8,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 8,
+        "lexeme": "function",
+        "line": 10,
+        "type": "FUNCTION",
+        "value": "function"
+    },
+    {
+        "column": 12,
+        "lexeme": "abs",
+        "line": 10,
+        "type": "IDENTIFIER",
+        "value": "abs"
+    },
+    {
+        "column": 12,
+        "lexeme": "(",
+        "line": 10,
+        "type": "LEFT_PAREN",
+        "value": "("
+    },
+    {
+        "column": 19,
+        "lexeme": "Double",
+        "line": 10,
+        "type": "IDENTIFIER",
+        "value": "Double"
+    },
+    {
+        "column": 21,
+        "lexeme": "x",
+        "line": 10,
+        "type": "IDENTIFIER",
+        "value": "x"
+    },
+    {
+        "column": 21,
+        "lexeme": ")",
+        "line": 10,
+        "type": "RIGHT_PAREN",
+        "value": ")"
+    },
+    {
+        "column": 23,
+        "lexeme": "->",
+        "line": 10,
+        "type": "ARROW",
+        "value": "->"
+    },
+    {
+        "column": 32,
+        "lexeme": "Double",
+        "line": 10,
+        "type": "IDENTIFIER",
+        "value": "Double"
+    },
+    {
+        "column": 33,
+        "lexeme": "{",
+        "line": 10,
+        "type": "LEFT_BRACKET",
+        "value": "{"
+    },
+    {
+        "column": 3,
+        "lexeme": "if",
+        "line": 11,
+        "type": "IF",
+        "value": "if"
+    },
+    {
+        "column": 4,
+        "lexeme": "(",
+        "line": 11,
+        "type": "LEFT_PAREN",
+        "value": "("
+    },
+    {
+        "column": 5,
+        "lexeme": "!",
+        "line": 11,
+        "type": "NOT",
+        "value": "!"
+    },
+    {
+        "column": 6,
+        "lexeme": "(",
+        "line": 11,
+        "type": "LEFT_PAREN",
+        "value": "("
+    },
+    {
+        "column": 8,
+        "lexeme": "x",
+        "line": 11,
+        "type": "IDENTIFIER",
+        "value": "x"
+    },
+    {
+        "column": 9,
+        "lexeme": ">",
+        "line": 11,
+        "type": "GT",
+        "value": ">"
+    },
+    {
+        "column": 12,
+        "lexeme": "0",
+        "line": 11,
+        "type": "INT_LIT",
+        "value": 0
+    },
+    {
+        "column": 12,
+        "lexeme": ")",
+        "line": 11,
+        "type": "RIGHT_PAREN",
+        "value": ")"
+    },
+    {
+        "column": 13,
+        "lexeme": ")",
+        "line": 11,
+        "type": "RIGHT_PAREN",
+        "value": ")"
+    },
+    {
+        "column": 1,
+        "lexeme": "{",
+        "line": 12,
+        "type": "LEFT_BRACKET",
+        "value": "{"
+    },
+    {
+        "column": 3,
+        "lexeme": "x",
+        "line": 14,
+        "type": "IDENTIFIER",
+        "value": "x"
+    },
+    {
+        "column": 3,
+        "lexeme": ".",
+        "line": 14,
+        "type": "DOT",
+        "value": "."
+    },
+    {
+        "column": 10,
+        "lexeme": "signum",
+        "line": 14,
+        "type": "IDENTIFIER",
+        "value": "signum"
+    },
+    {
+        "column": 10,
+        "lexeme": ".",
+        "line": 14,
+        "type": "DOT",
+        "value": "."
+    },
+    {
+        "column": 17,
+        "lexeme": "switch",
+        "line": 14,
+        "type": "IDENTIFIER",
+        "value": "switch"
+    },
+    {
+        "column": 17,
+        "lexeme": "(",
+        "line": 14,
+        "type": "LEFT_PAREN",
+        "value": "("
+    },
+    {
+        "column": 22,
+        "lexeme": "true",
+        "line": 14,
+        "type": "IDENTIFIER",
+        "value": "true"
+    },
+    {
+        "column": 22,
+        "lexeme": ",",
+        "line": 14,
+        "type": "COMMA",
+        "value": ","
+    },
+    {
+        "column": 29,
+        "lexeme": "false",
+        "line": 14,
+        "type": "IDENTIFIER",
+        "value": "false"
+    },
+    {
+        "column": 29,
+        "lexeme": ")",
+        "line": 14,
+        "type": "RIGHT_PAREN",
+        "value": ")"
+    },
+    {
+        "column": 30,
+        "lexeme": ";",
+        "line": 14,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 8,
+        "lexeme": "return",
+        "line": 15,
+        "type": "RETURN",
+        "value": "return"
+    },
+    {
+        "column": 10,
+        "lexeme": "x",
+        "line": 15,
+        "type": "IDENTIFIER",
+        "value": "x"
+    },
+    {
+        "column": 10,
+        "lexeme": ";",
+        "line": 15,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 1,
+        "lexeme": "}",
+        "line": 16,
+        "type": "RIGHT_BRACKET",
+        "value": "}"
+    },
+    {
+        "column": 5,
+        "lexeme": "else",
+        "line": 17,
+        "type": "ELSE",
+        "value": "else"
+    },
+    {
+        "column": 1,
+        "lexeme": "{",
+        "line": 18,
+        "type": "LEFT_BRACKET",
+        "value": "{"
+    },
+    {
+        "column": 8,
+        "lexeme": "return",
+        "line": 19,
+        "type": "RETURN",
+        "value": "return"
+    },
+    {
+        "column": 10,
+        "lexeme": "x",
+        "line": 19,
+        "type": "IDENTIFIER",
+        "value": "x"
+    },
+    {
+        "column": 10,
+        "lexeme": ";",
+        "line": 19,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
+        "column": 1,
+        "lexeme": "}",
+        "line": 20,
+        "type": "RIGHT_BRACKET",
+        "value": "}"
+    },
+    {
+        "column": 0,
+        "lexeme": "}",
+        "line": 21,
+        "type": "RIGHT_BRACKET",
+        "value": "}"
+    },
+    {
+        "column": 1,
+        "lexeme": ";",
+        "line": 21,
+        "type": "SEMICOLON",
+        "value": ";"
+    }
+]

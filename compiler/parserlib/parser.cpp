@@ -38,6 +38,65 @@ void Parser::parse() {
     // Step 2) get all the exported declarations (functions and types inside the module)
     expect(Token::LEFT_BRACKET, "Module declaration must start with a left bracket '{'");
 
+    while (!accept(Token::RIGHT_BRACKET)) {
+        auto newestSymbol = this->parseExportedSymbol();
+        accept(Token::COMMA); //Facultative
+    }
+
     // Step 3) as long as the module declaration hasn't ended, parse what is in it (type declarations
 
+}
+
+QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
+    expect(Token::IDENTIFIER, "All declarations in a module must start with an identifier");
+    QString first = lastAccepted->value.toString();
+    if (accept(Token::COMMA))
+    {
+        log << "Parsed an exported type whose name is " << first;
+        return QSharedPointer<ExportedSymbol>(ExportedSymbol::type(first));
+    }
+
+    /*It's a function.
+    Two forms are allowed :
+    -ReturnType func(argType, argType1,...) ->
+    -func(argType, argType2,...) -> ReturnType
+    */
+    if (accept(Token::IDENTIFIER)) {
+        QString returnType = first;
+        QString funcName = lastAccepted->value.toString();
+        QStringList argTypes;
+        expect(Token::LEFT_PAREN, "Function signature must contain parenthesis");
+        while (!accept(Token::RIGHT_PAREN)) {
+            expect(Token::IDENTIFIER, "Expected typename"); //TODO : allow compound type names (qualifiers etc)
+            argTypes << lastAccepted->value.toString();
+            accept(Token::COMMA); // At the moment, compound type names will be seen as two types and so 2 args. TODO : fix this
+        }
+
+        log << "Parsed a function declaration (exproted in module) with C-style syntax. Name : " << funcName << ". Return type : " << returnType << ". Args types : ";
+        for (auto& t : argTypes)
+            log << t <<';';
+        log << endl;
+
+        return QSharedPointer<ExportedSymbol>(ExportedSymbol::func(funcName, returnType, argTypes));
+    }
+
+    else if (accept(Token::LEFT_PAREN)) {
+        QString& funcName = first;
+        QStringList argTypes;
+        while (!accept(Token::RIGHT_PAREN)) {
+            expect(Token::IDENTIFIER, "Expected typename"); //TODO : allow compound type names (qualifiers etc)
+            argTypes << lastAccepted->value.toString();
+            accept(Token::COMMA); // At the moment, compound type names will be seen as two types and so 2 args. TODO : fix this
+        }
+        expect(Token::ARROW, "Function declarations that do not start with return type must be followed by an arrow.");
+        expect(Token::IDENTIFIER, "Arrow must be followed by a type name");
+        QString returnType = lastAccepted->value.toString();
+        log << "Parsed a function declaration (exproted in module) with C-style syntax. Name : " << funcName << ". Return type : " << returnType << ". Args types : ";
+                for (auto& t : argTypes)
+                    log << t <<';';
+        log << endl;
+        return QSharedPointer<ExportedSymbol>(ExportedSymbol::func(funcName, returnType, argTypes));
+
+
+    }
 }

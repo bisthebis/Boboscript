@@ -1,5 +1,6 @@
 #include "parsertest.h"
 #include "fileast.h"
+#include "parser.h"
 #include "scanner.h"
 #include "myexception.h"
 #include <QtTest/QtTest>
@@ -35,10 +36,14 @@ void ParserTest::expectedAST() {
         QVERIFY(file.open(QFile::ReadOnly));
         QByteArray data = file.readAll();
         auto doc = QJsonDocument::fromJson(data);
-        auto tokens = Scanner::fromJson(doc);
-        //Now that we have the tokens, we can compare to expected AST (TODO)
+        auto scanner = Scanner::fromJson(doc);
+        auto tokens = scanner.tokens();
 
-        qDebug() << "Number of tokens : " << tokens.tokens().size();
+        //Now that we have the tokens, we can parse then compare to expected AST (TODO)
+
+        Parser parser(tokens);
+
+        qDebug() << "Log of parser : " << parser.getLog();
     }
     catch (MyException& e) {
         QFAIL(QString("Exception catched in test : %1").arg(e.msg).toStdString().data());

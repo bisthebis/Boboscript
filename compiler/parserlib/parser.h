@@ -21,6 +21,9 @@ private:
     bool accept(Token::Type t);
     void expect(Token::Type t, QString err);
 
+    /*Utility functions, according to the grammar */
+
+
     const QVector<Token>& tokens;
     QVector<Token>::const_iterator it;
     QVector<Token>::const_iterator lastAccepted;

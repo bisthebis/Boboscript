@@ -99,4 +99,7 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
 
 
     }
+
+    //Else it's a type declaration
+    return QSharedPointer<ExportedSymbol>(ExportedSymbol::type(first));
 }

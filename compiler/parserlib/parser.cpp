@@ -33,6 +33,8 @@ void Parser::parse() {
     const QString moduleName = lastAccepted->lexeme;
     if (!moduleNamePattern.match(moduleName).hasMatch())
         throw MyException(QString("Module name must contain only uppercase letters, digits and underscores. Thus, name %1 is incorrect").arg(moduleName));
+
+    setModuleName(moduleName);
     log << "Module name found : " << moduleName << endl;
 
     // Step 2) get all the exported declarations (functions and types inside the module)
@@ -40,6 +42,10 @@ void Parser::parse() {
 
     while (!accept(Token::RIGHT_BRACKET)) {
         auto newestSymbol = this->parseExportedSymbol();
+        if (newestSymbol->isFunction)
+            addExportedFunction(newestSymbol->name, newestSymbol->returnType, newestSymbol->argTypes);
+        else
+            addExportedType(newestSymbol->name);
         accept(Token::COMMA); //Facultative
     }
 
@@ -101,5 +107,6 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
     }
 
     //Else it's a type declaration
+    log << "Parsed a type to export : " << first << endl;
     return QSharedPointer<ExportedSymbol>(ExportedSymbol::type(first));
 }

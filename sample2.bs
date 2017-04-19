@@ -1,6 +1,12 @@
 module SAMPLE2 {
 	twice(Double) -> Double,
+	Point,
 };
+
+struct Point {
+	Int x;
+	Int y;
+}
 
 function twice(Double x) -> Double {
 	return 2 * x;

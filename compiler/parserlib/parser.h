@@ -55,13 +55,14 @@ private:
     void setModuleName(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::setModuleName. Arg : " << n;}
     void addExportedType(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedType. Arg : " << n;}
     void addExportedFunction(QString n, QString rt, QStringList args) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedFunction. Args : " << n << ';' << rt << ',' << args;}
-
+    void parseDeclarationAndAddIt();
 
 
     const QVector<Token>& tokens;
     QVector<Token>::const_iterator it;
     QVector<Token>::const_iterator lastAccepted;
     const QVector<Token>::const_iterator end;
+    bool atEnd() const {return it == end;}
 
     QScopedPointer<FileAST> ast;
 

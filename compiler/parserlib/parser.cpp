@@ -49,7 +49,12 @@ void Parser::parse() {
         accept(Token::COMMA); //Facultative
     }
 
-    // Step 3) as long as the module declaration hasn't ended, parse what is in it (type declarations
+    // Step 3) Now that module has ended, we expect a semicolong and then parse every other statement
+    expect(Token::SEMICOLON, "Module declaration : missing semicolon");
+
+    while (!atEnd()) { //TODO
+        parseDeclarationAndAddIt();
+    }
 
 }
 
@@ -109,4 +114,8 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
     //Else it's a type declaration
     log << "Parsed a type to export : " << first << endl;
     return QSharedPointer<ExportedSymbol>(ExportedSymbol::type(first));
+}
+
+void Parser::parseDeclarationAndAddIt() {
+    throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");
 }

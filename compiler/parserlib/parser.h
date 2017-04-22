@@ -56,6 +56,9 @@ private:
     void addExportedType(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedType. Arg : " << n;}
     void addExportedFunction(QString n, QString rt, QStringList args) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedFunction. Args : " << n << ';' << rt << ',' << args;}
     void parseDeclarationAndAddIt();
+    void parseStruct();
+
+    void parseVariableDeclaration();
 
 
     const QVector<Token>& tokens;

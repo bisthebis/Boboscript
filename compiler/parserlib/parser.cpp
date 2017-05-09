@@ -127,22 +127,25 @@ void Parser::parseDeclarationAndAddIt() {
     }
 }
 
-void Parser::parseStruct() {
+Parser::StructDeclaration Parser::parseStruct() {
     expect(Token::IDENTIFIER, "Struct must have a single-word name");
     const QString name = lastAccepted->value.toString();
     log << "Parsing struct called " << name << endl;
     expect(Token::LEFT_BRACKET, "Expected bracket after a struct declaration");
+    StructDeclaration result;
     while (!accept(Token::RIGHT_BRACKET)) {
-        parseVariableDeclaration();
+        result.members.append(parseVariableDeclaration());
     }
     expect(Token::SEMICOLON, "Struct definition must end with a ;");
+    return result;
 }
 
-void Parser::parseVariableDeclaration() {
+Parser::VariableDeclaration Parser::parseVariableDeclaration() {
     expect(Token::IDENTIFIER, "Variable declaration must start with a typename !");
     const QString type = lastAccepted->value.toString();
     expect(Token::IDENTIFIER, "Variable declaration must contain an identifer as varibale's name !");
     const QString name = lastAccepted->value.toString();
     expect(Token::SEMICOLON, "Missing semicolon");
     log << QString("Parsed a variable declaration. Type is %0, name is %1.").arg(type).arg(name);
+    return VariableDeclaration::create(type, name);
 }

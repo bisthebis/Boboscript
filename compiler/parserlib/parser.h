@@ -48,6 +48,21 @@ private:
         QStringList argTypes;
     };
 
+    struct VariableDeclaration {
+        QString type;
+        QString name;
+        static VariableDeclaration create(QString t, QString n) {
+            VariableDeclaration vd;
+            vd.type = t;
+            vd.name = n;
+            return vd;
+        }
+    };
+
+    struct StructDeclaration {
+        QVector<VariableDeclaration> members;
+    };
+
     /*Utility functions, according to the grammar */
     QSharedPointer<ExportedSymbol> parseExportedSymbol(); //Inside a module declaration
 
@@ -56,9 +71,9 @@ private:
     void addExportedType(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedType. Arg : " << n;}
     void addExportedFunction(QString n, QString rt, QStringList args) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedFunction. Args : " << n << ';' << rt << ',' << args;}
     void parseDeclarationAndAddIt();
-    void parseStruct();
 
-    void parseVariableDeclaration();
+    StructDeclaration parseStructDeclaration();
+    VariableDeclaration parseVariableDeclaration();
 
 
     const QVector<Token>& tokens;

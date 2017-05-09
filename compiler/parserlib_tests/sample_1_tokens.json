@@ -168,6 +168,13 @@
         "value": "}"
     },
     {
+        "column": 1,
+        "lexeme": ";",
+        "line": 9,
+        "type": "SEMICOLON",
+        "value": ";"
+    },
+    {
         "column": 8,
         "lexeme": "function",
         "line": 11,

@@ -6,7 +6,7 @@ module SAMPLE2 {
 struct Point {
 	Int x;
 	Int y;
-}
+};
 
 function twice(Double x) -> Double {
 	return 2 * x;

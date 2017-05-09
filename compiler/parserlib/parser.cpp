@@ -121,7 +121,9 @@ void Parser::parseDeclarationAndAddIt() {
         parseStruct();
     }
     else {
-        throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");
+        //throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");
+        lastAccepted = it++; //TEMPORARY : pass
+        return;
     }
 }
 
@@ -137,5 +139,10 @@ void Parser::parseStruct() {
 }
 
 void Parser::parseVariableDeclaration() {
-    throw MyException("Unimplemented method called : Parser::parseVariableDeclaration");
+    expect(Token::IDENTIFIER, "Variable declaration must start with a typename !");
+    const QString type = lastAccepted->value.toString();
+    expect(Token::IDENTIFIER, "Variable declaration must contain an identifer as varibale's name !");
+    const QString name = lastAccepted->value.toString();
+    expect(Token::SEMICOLON, "Missing semicolon");
+    log << QString("Parsed a variable declaration. Type is %0, name is %1.").arg(type).arg(name);
 }

@@ -118,7 +118,7 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
 
 void Parser::parseDeclarationAndAddIt() {
     if (accept(Token::STRUCT)) {
-        parseStruct();
+        parseStructDeclaration();
     }
     else {
         //throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");
@@ -127,7 +127,7 @@ void Parser::parseDeclarationAndAddIt() {
     }
 }
 
-Parser::StructDeclaration Parser::parseStruct() {
+Parser::StructDeclaration Parser::parseStructDeclaration() {
     expect(Token::IDENTIFIER, "Struct must have a single-word name");
     const QString name = lastAccepted->value.toString();
     log << "Parsing struct called " << name << endl;

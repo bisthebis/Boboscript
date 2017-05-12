@@ -2,7 +2,6 @@
 #define PARSER_H
 
 #include "token.h"
-#include "fileast.h"
 #include <QVector>
 #include <QScopedPointer>
 #include <QSharedPointer>
@@ -11,18 +10,16 @@
 #include <QStringList>
 #include <QtDebug>
 
+class FileAST;
+
 class Parser
 {
+
 public:
     Parser(const QVector<Token>& tokens);
     const QString& getLog() const {
         return _log;
     }
-
-private:
-    void parse();
-    bool accept(Token::Type t);
-    void expect(Token::Type t, QString err);
 
     /* Inner types */
     struct ExportedSymbol {
@@ -60,8 +57,16 @@ private:
     };
 
     struct StructDeclaration {
+        QString name;
         QVector<VariableDeclaration> members;
     };
+    /* End of inner types */
+
+private:
+    void parse();
+    bool accept(Token::Type t);
+    void expect(Token::Type t, QString err);
+
 
     /*Utility functions, according to the grammar */
     QSharedPointer<ExportedSymbol> parseExportedSymbol(); //Inside a module declaration
@@ -82,12 +87,10 @@ private:
     const QVector<Token>::const_iterator end;
     bool atEnd() const {return it == end;}
 
-    QScopedPointer<FileAST> ast;
-
     QString _log;
     QTextStream log;
 
-
+    QScopedPointer<FileAST> ast;
 
 
 };

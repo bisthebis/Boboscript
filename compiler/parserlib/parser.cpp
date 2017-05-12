@@ -1,4 +1,5 @@
 #include "parser.h"
+#include "fileast.h"
 #include "myexception.h"
 #include <QRegularExpression>
 
@@ -134,6 +135,7 @@ Parser::StructDeclaration Parser::parseStructDeclaration() {
     log << "Parsing struct called " << name << endl;
     expect(Token::LEFT_BRACKET, "Expected bracket after a struct declaration");
     StructDeclaration result;
+    result.name = name;
     while (!accept(Token::RIGHT_BRACKET)) {
         result.members.append(parseVariableDeclaration());
     }

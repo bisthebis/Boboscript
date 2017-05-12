@@ -119,6 +119,7 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
 void Parser::parseDeclarationAndAddIt() {
     if (accept(Token::STRUCT)) {
         parseStructDeclaration();
+        return; //Stop after struct
     }
     else {
         //throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");

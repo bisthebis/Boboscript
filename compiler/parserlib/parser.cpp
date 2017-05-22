@@ -122,7 +122,24 @@ void Parser::parseDeclarationAndAddIt() {
     if (accept(Token::STRUCT)) {
         auto structure = parseStructDeclaration();
         ast->pushStructure(structure);
-        return; //Stop after struct
+    }
+    else if (accept(Token::CLASS)) {
+        throw new MyException("Class parsing is not implemented yet !");
+        /*
+        auto newClass = parseClassDeclaration();
+        ast->pushClass(newClass);*/
+    }
+    else if (accept(Token::ENUM)) {
+        throw new MyException("Enum parsing is not implemented yet !");
+        /*
+        auto newClass = parseClassDeclaration();
+        ast->pushClass(newClass);*/
+    }
+    else if (accept(Token::FUNCTION)) {
+        throw new MyException("Function parsing is not implemented yet !");
+        /*
+        auto f = parseFunctionDefinition();
+        ast->pushFunction(f);*/
     }
     else {
         //throw MyException("Unimplemented method called : Parser::parseDeclarationAndAddIt");

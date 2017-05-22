@@ -56,6 +56,24 @@ public:
         }
     };
 
+    struct FunctionDefinition {
+        QString name;
+        QString returnType;
+        QStringList argTypes;
+        /*TODO : add instructions'AST*/
+    };
+
+    struct EnumDeclaration {
+        QString name;
+        QMap<QString, int> values;
+    };
+
+    struct ClassDeclaration {
+        QString name;
+        QVector<VariableDeclaration> members;
+        QVector<FunctionDefinition> methods;
+    };
+
     struct StructDeclaration {
         QString name;
         QVector<VariableDeclaration> members;

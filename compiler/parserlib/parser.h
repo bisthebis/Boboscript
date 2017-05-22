@@ -72,7 +72,6 @@ private:
     QSharedPointer<ExportedSymbol> parseExportedSymbol(); //Inside a module declaration
 
     /*Utility for functions to update known informations about parsed file*/
-    void setModuleName(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::setModuleName. Arg : " << n;}
     void addExportedType(QString n) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedType. Arg : " << n;}
     void addExportedFunction(QString n, QString rt, QStringList args) {qWarning() << "UNIMPLEMENTED METHOD CALLED : Parser::addExportedFunction. Args : " << n << ';' << rt << ',' << args;}
     void parseDeclarationAndAddIt();

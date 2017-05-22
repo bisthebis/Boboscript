@@ -7,6 +7,7 @@ static const QRegularExpression moduleNamePattern("^([A-Z]|_|[0-9])+$");
 
 Parser::Parser(const QVector<Token> &tokens) : tokens(tokens), it(tokens.begin()), end(tokens.end()), log(&_log)
 {
+    ast.reset(new FileAST());
     parse();
 }
 
@@ -35,7 +36,7 @@ void Parser::parse() {
     if (!moduleNamePattern.match(moduleName).hasMatch())
         throw MyException(QString("Module name must contain only uppercase letters, digits and underscores. Thus, name %1 is incorrect").arg(moduleName));
 
-    setModuleName(moduleName);
+    ast->setName(moduleName);
     log << "Module name found : " << moduleName << endl;
 
     // Step 2) get all the exported declarations (functions and types inside the module)
@@ -119,7 +120,8 @@ QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
 
 void Parser::parseDeclarationAndAddIt() {
     if (accept(Token::STRUCT)) {
-        parseStructDeclaration();
+        auto structure = parseStructDeclaration();
+        ast->pushStructure(structure);
         return; //Stop after struct
     }
     else {

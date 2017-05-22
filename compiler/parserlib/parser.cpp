@@ -43,7 +43,7 @@ void Parser::parse() {
     expect(Token::LEFT_BRACKET, "Module declaration must start with a left bracket '{'");
 
     while (!accept(Token::RIGHT_BRACKET)) {
-        auto newestSymbol = this->parseExportedSymbol();
+        auto newestSymbol = this->parseExportedSymbolInModuleDecl();
         if (newestSymbol->isFunction)
             addExportedFunction(newestSymbol->name, newestSymbol->returnType, newestSymbol->argTypes);
         else
@@ -60,7 +60,7 @@ void Parser::parse() {
 
 }
 
-QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbol() {
+QSharedPointer<Parser::ExportedSymbol> Parser::parseExportedSymbolInModuleDecl() {
     expect(Token::IDENTIFIER, "All declarations in a module must start with an identifier");
     QString first = lastAccepted->value.toString();
     if (accept(Token::COMMA))

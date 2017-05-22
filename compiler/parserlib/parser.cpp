@@ -45,9 +45,9 @@ void Parser::parse() {
     while (!accept(Token::RIGHT_BRACKET)) {
         auto newestSymbol = this->parseExportedSymbolInModuleDecl();
         if (newestSymbol->isFunction)
-            addExportedFunction(newestSymbol->name, newestSymbol->returnType, newestSymbol->argTypes);
+            ast->pushExportedFunction(*newestSymbol);
         else
-            addExportedType(newestSymbol->name);
+            ast->pushExportedType(*newestSymbol);
         accept(Token::COMMA); //Facultative
     }
 

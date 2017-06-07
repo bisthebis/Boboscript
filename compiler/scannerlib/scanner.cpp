@@ -185,6 +185,7 @@ Token Scanner::parseAlphaNum() {
         current = peek();
     }
 
+    //TODO : PARSE BOOL LITERALS
     auto keyword = keywordsList.find(lexeme);
     static const auto end = keywordsList.end();
     if (keyword == end)

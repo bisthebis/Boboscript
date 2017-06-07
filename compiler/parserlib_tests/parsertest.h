@@ -12,8 +12,13 @@ public:
 private slots:
     void initTestCase();
     void dummySuccess();
+
     void expectedAST_data();
     void expectedAST();
+
+    void enumTest();
+    void structTest();
+
     void cleanupTestCase();
 };
 

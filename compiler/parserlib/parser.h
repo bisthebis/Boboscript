@@ -14,6 +14,7 @@ class FileAST;
 
 class Parser
 {
+    friend class ParserTest;
 
 public:
     Parser(const QVector<Token>& tokens);

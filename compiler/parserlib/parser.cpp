@@ -162,6 +162,37 @@ Parser::StructDeclaration Parser::parseStructDeclaration() {
     return result;
 }
 
+Parser::EnumDeclaration Parser::parseEnumDeclaration() {
+    expect(Token::IDENTIFIER, "Struct must have a single-word name");
+    const QString name = lastAccepted->value.toString();
+    /* Enums are either list of default values {a, b, c} or exact values {a = x, b = y, c = z}*/
+
+    log << "Parsing enum called " << name << endl;
+    expect(Token::LEFT_BRACKET, "Expected bracket after a struct declaration");
+    EnumDeclaration result;
+    result.name = name;
+    int counter = 0;
+    while (!accept(Token::RIGHT_BRACKET)) {
+        expect(Token::IDENTIFIER, "Enum values must be identifiers");
+        auto name = lastAccepted->value.toString();
+        if (accept(Token::EQ)) {
+            expect(Token::INT_LIT, "Enums can only be assigned to Int values");
+            int value = lastAccepted->value.toInt();
+            result.values[name] = value;
+        }
+        else {
+            result.values[name] = counter++;
+        }
+
+        if (accept(Token::RIGHT_BRACKET))
+            break;
+
+        expect(Token::COMMA, "Enum values must be separated by a comma ','");
+    }
+    expect(Token::SEMICOLON, "Enum definitions are statements and must end with a ;");
+    return result;
+}
+
 Parser::VariableDeclaration Parser::parseVariableDeclaration() {
     expect(Token::IDENTIFIER, "Variable declaration must start with a typename !");
     const QString type = lastAccepted->value.toString();

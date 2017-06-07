@@ -93,6 +93,7 @@ private:
     void parseDeclarationAndAddIt();
 
     StructDeclaration parseStructDeclaration();
+    EnumDeclaration parseEnumDeclaration();
     VariableDeclaration parseVariableDeclaration();
 
 

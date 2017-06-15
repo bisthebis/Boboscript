@@ -1,5 +1,5 @@
 #include "compound_type_test.h"
-#include "compound_type.h"
+#include "type.h"
 #include <QMap>
 #include <QString>
 #include <QtTest/QtTest>
@@ -25,22 +25,3 @@ void CompoundTypeTest::enumConversion() {
     }
 }
 
-
-void CompoundTypeTest::structConversion() {
-    /* Sample to pseudo-check :
-     * struct Foo {
-     *      Int x;
-     *      Float y;
-     * */
-    QMap<QString, int> values;
-    values["RED"] = 1;
-    values["BLUE"] = 5;
-    values["GREEN"] = 3;
-
-    CompoundType type = CompoundType::Enum("Color", values);
-    QVERIFY(type.name() == "Color");
-    const auto valuesEnd = values.cend();
-    for (auto it = values.cbegin(); it != valuesEnd; ++it) {
-        QVERIFY(*it == type.enumValues()[it.key()]);
-    }
-}

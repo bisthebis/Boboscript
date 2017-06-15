@@ -16,8 +16,8 @@ private slots:
     void expectedAST_data();
     void expectedAST();
 
-    void enumTest();
-    void structTest();
+    //void enumTest();
+    //void structTest();
 
     void cleanupTestCase();
 };

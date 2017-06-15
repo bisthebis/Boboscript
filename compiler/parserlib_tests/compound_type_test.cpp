@@ -25,3 +25,60 @@ void CompoundTypeTest::enumConversion() {
     }
 }
 
+void CompoundTypeTest::structConversion() {
+    /*  Checking for the equivalent of this code :
+     * struct Rec {
+     *  Int w;
+     *  Int h;
+     * };
+     *
+     * struct Point {
+     *  Float x;
+     *  Float y;
+     * };
+     *
+     * struct Character {
+     *  Point pos;
+     *  Rec picture;
+     * };
+     * */
+
+    CompoundType Int = CompoundType::Primitive("Int");
+    CompoundType Float = CompoundType::Primitive("Float");
+
+    QMap<QString, CompoundType> RecMap;
+    RecMap["w"] = Int;
+    RecMap["h"] = Int;
+    CompoundType Rec = CompoundType::Struct("Rec", RecMap);
+
+    QMap<QString, CompoundType> PointMap;
+    PointMap["w"] = Float;
+    PointMap["h"] = Float;
+    CompoundType Point = CompoundType::Struct("Point", PointMap);
+
+    QMap<QString, CompoundType> CharacterMap;
+    CharacterMap["pos"] = Point;
+    CharacterMap["picture"] = Rec;
+    CompoundType Character = CompoundType::Struct("Character", CharacterMap);
+
+    QVERIFY(Character.structValues()["pos"] == Point);
+
+
+}
+
+void CompoundTypeTest::valueEquality() {
+    CompoundType Int = CompoundType::Primitive("Int");
+    CompoundType Int2 = CompoundType::Primitive("Int");
+    QVERIFY(Int == Int2);
+
+    CompoundType Float = CompoundType::Primitive("Float");
+
+    QMap<QString, CompoundType> RecMap;
+    RecMap["w"] = Int;
+    RecMap["h"] = Int;
+    CompoundType Rec = CompoundType::Struct("Rec", RecMap);
+    RecMap["w"] = Float;
+    CompoundType falseRec = CompoundType::Struct("Rec", RecMap);
+    QVERIFY(Rec != falseRec);
+
+}

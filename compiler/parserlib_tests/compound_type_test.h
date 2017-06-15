@@ -11,6 +11,8 @@ public:
 
 private slots:
     void enumConversion();
+    void structConversion();
+    void valueEquality();
 };
 
 #endif // COMPOUND_TYPE_TEST_H

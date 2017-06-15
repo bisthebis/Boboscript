@@ -24,3 +24,23 @@ void CompoundTypeTest::enumConversion() {
         QVERIFY(*it == type.enumValues()[it.key()]);
     }
 }
+
+
+void CompoundTypeTest::structConversion() {
+    /* Sample to pseudo-check :
+     * struct Foo {
+     *      Int x;
+     *      Float y;
+     * */
+    QMap<QString, int> values;
+    values["RED"] = 1;
+    values["BLUE"] = 5;
+    values["GREEN"] = 3;
+
+    CompoundType type = CompoundType::Enum("Color", values);
+    QVERIFY(type.name() == "Color");
+    const auto valuesEnd = values.cend();
+    for (auto it = values.cbegin(); it != valuesEnd; ++it) {
+        QVERIFY(*it == type.enumValues()[it.key()]);
+    }
+}

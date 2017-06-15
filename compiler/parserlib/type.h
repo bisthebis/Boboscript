@@ -27,6 +27,25 @@ public:
         if (_type == Category::PRIMITIVE)
             return true;
 
+        if (_type == Category::ENUM)
+        {
+            if (_enum_content.size() != other._enum_content.size())
+                return false;
+
+            auto end = enumValues().cend();
+            const auto& otherValues = other._enum_content;
+            auto otherEnd = otherValues.cend();
+            for (auto it = enumValues().cbegin(); it != end; ++it)
+            {
+                auto counterpart = otherValues.find(it.key());
+                if (counterpart == otherEnd || *counterpart != *it)
+                    return false;
+            }
+
+            return true;
+        }
+
+
         if (_type == Category::STRUCT)
         {
             if (_struct_content.size() != other._struct_content.size())

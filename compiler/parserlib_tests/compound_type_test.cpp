@@ -73,6 +73,7 @@ void CompoundTypeTest::valueEquality() {
 
     CompoundType Float = CompoundType::Primitive("Float");
 
+    //Struct comparison
     QMap<QString, CompoundType> RecMap;
     RecMap["w"] = Int;
     RecMap["h"] = Int;
@@ -80,5 +81,13 @@ void CompoundTypeTest::valueEquality() {
     RecMap["w"] = Float;
     CompoundType falseRec = CompoundType::Struct("Rec", RecMap);
     QVERIFY(Rec != falseRec);
+
+    //Enum comparison
+    QMap<QString, int> enumMap;
+    enumMap["RED"] = 1;
+    auto enum1 = CompoundType::Enum("Enum", enumMap);
+    enumMap["RED"] = 2;
+    auto enum2 = CompoundType::Enum("Enum", enumMap);
+    QVERIFY(enum1 != enum2);
 
 }
